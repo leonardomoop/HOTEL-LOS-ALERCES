@@ -195,3 +195,12 @@ class ReservaDAO(DAO):
         self.cursor.execute(query, (1 if realizado else 0, id_reserva))
         self.conexion.commit()
         return self.cursor.rowcount > 0
+
+    def eliminar(self, id_reserva: int) -> bool:
+        """
+        Elimina una reserva y sus líneas de consumo asociadas por su ID.
+        """
+        self.cursor.execute("DELETE FROM linea_consumo WHERE reserva_id = ?", (id_reserva,))
+        self.cursor.execute("DELETE FROM reserva WHERE id = ?", (id_reserva,))
+        self.conexion.commit()
+        return self.cursor.rowcount > 0

@@ -326,6 +326,13 @@ def consultar_detalle_reserva(reserva_dao: ReservaDAO):
     print(f"Check-in         : {estado_checkin}")
     print("=" * 65)
 
+    eliminar_opt = input("\n¿Desea eliminar esta reserva del sistema? (S/N): ").strip().upper()
+    if eliminar_opt == "S":
+        if reserva_dao.eliminar(reserva.id):
+            print(f"✅ Reserva #{reserva.id} eliminada correctamente de la base de datos.")
+        else:
+            print(f"❌ No se pudo eliminar la reserva #{reserva.id}.")
+
 
 # =========================================================================
 # 5. DEMOSTRACIÓN REGLA 1: HABITACIÓN OCUPADA (P14)
