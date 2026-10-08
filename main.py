@@ -44,7 +44,7 @@ def submenu_huespedes(huesped_dao: HuespedDAO):
         print("-" * 50)
         print("  1. Registrar Nuevo Huésped (con validación de RUT)")
         print("  2. Listar Todos los Huéspedes")
-        print("  3. Modificar Teléfono de un Huésped")
+        print("  3. Modificar Datos de un Huésped (Nombre, Teléfono, Email)")
         print("  4. Eliminar un Huésped por ID")
         print("  5. Probar Validación de RUT (Módulo 11)")
         print("  6. Volver al Menú Principal")
@@ -86,7 +86,7 @@ def submenu_huespedes(huesped_dao: HuespedDAO):
                     print(f"{h.id:<5} | {h.rut:<15} | {h.nombre:<25} | {h.telefono:<15} | {h.email}")
 
         elif op == "3":
-            print("\n--- MODIFICAR TELÉFONO DE HUÉSPED ---")
+            print("\n--- MODIFICAR DATOS DEL HUÉSPED (Nombre, Teléfono, Email) ---")
             id_h = leer_entero("Ingrese el ID del huésped a modificar: ", minimo=1)
             huesped = huesped_dao.buscar_por_id(id_h)
             if not huesped:
