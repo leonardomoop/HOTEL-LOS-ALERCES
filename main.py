@@ -93,11 +93,29 @@ def submenu_huespedes(huesped_dao: HuespedDAO):
                 print(f"❌ No se encontró ningún huésped con ID {id_h}.")
                 continue
 
-            print(f"Huésped seleccionado: {huesped.nombre} (Teléfono actual: {huesped.telefono})")
-            nuevo_tel = input("Ingrese el nuevo número de teléfono: ").strip()
-            huesped.telefono = nuevo_tel
+            print(f"\nDatos actuales del huésped:")
+            print(f"  Nombre  : {huesped.nombre}")
+            print(f"  Teléfono: {huesped.telefono}")
+            print(f"  Email   : {huesped.email}")
+            print("\n(Presione Enter sin escribir nada para mantener el valor actual)")
+
+            nuevo_nombre = input(f"Nuevo nombre [{huesped.nombre}]: ").strip()
+            nuevo_tel    = input(f"Nuevo teléfono [{huesped.telefono}]: ").strip()
+            nuevo_email  = input(f"Nuevo email [{huesped.email}]: ").strip()
+
+            # Solo reemplaza el campo si el usuario escribió algo nuevo
+            if nuevo_nombre:
+                huesped.nombre = nuevo_nombre
+            if nuevo_tel:
+                huesped.telefono = nuevo_tel
+            if nuevo_email:
+                huesped.email = nuevo_email
+
             if huesped_dao.actualizar(huesped):
-                print(f"✅ Teléfono actualizado correctamente a '{nuevo_tel}'.")
+                print(f"✅ Datos del huésped actualizados correctamente.")
+                print(f"  Nombre  : {huesped.nombre}")
+                print(f"  Teléfono: {huesped.telefono}")
+                print(f"  Email   : {huesped.email}")
             else:
                 print("❌ No se pudo actualizar el registro.")
 
